@@ -1,4 +1,5 @@
 from typing import List, Dict
+from src.insights.jobs import read
 
 
 def get_unique_industries(path: str) -> List[str]:
@@ -16,6 +17,13 @@ def get_unique_industries(path: str) -> List[str]:
     list
         List of unique industries
     """
+    # lê os dados do arquivo
+    data = read(path)
+    """ cria um conjunto com as indústrias únicas
+    (não vazias) presentes nos dados """
+    industries = {row['industry'] for row in data if row['industry']}
+    # converte o conjunto em uma lista e a retorna
+    return list(industries)
     raise NotImplementedError
 
 
