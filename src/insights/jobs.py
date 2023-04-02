@@ -1,6 +1,7 @@
 from functools import lru_cache
 from typing import List, Dict
 import csv
+from insights import jobs
 
 
 @lru_cache
@@ -38,6 +39,11 @@ def get_unique_job_types(path: str) -> List[str]:
     list
         List of unique job types
     """
+    data = jobs.read(path)
+    unique_job_types = set(data["job_type"])
+    unique_job_types.discard("")
+    # to usando o discard para remover o valor vazio
+    return list(unique_job_types)
     raise NotImplementedError
 
 
