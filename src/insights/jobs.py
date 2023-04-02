@@ -52,4 +52,11 @@ def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:
     list
         List of jobs with provided job_type
     """
+    """ Cria uma nova lista filtrando os empregos
+    cujo job_type é igual ao job_type fornecido"""
+    filtered_jobs = [
+        job for job in jobs
+        if job.get("job_type") == job_type
+        ]
+    return filtered_jobs
     raise NotImplementedError
