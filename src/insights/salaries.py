@@ -48,6 +48,17 @@ def get_min_salary(path: str) -> int:
     int
         The minimum salary paid out of all job opportunities
     """
+    data = read(path)
+
+    # Percorre os dados e encontra o menor salário
+    salaries = [
+        int(row["min_salary"])
+        for row in data
+        if row.get("min_salary").isdigit()
+        ]
+    min_salary = min(salaries) if salaries else 0
+
+    return min_salary
     raise NotImplementedError
 
 
