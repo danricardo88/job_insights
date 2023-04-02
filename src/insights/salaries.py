@@ -128,4 +128,31 @@ def filter_by_salary_range(
     list
         Jobs whose salary range contains `salary`
     """
+    filtered_jobs = []
+
+    for job in jobs:
+
+        """ Obtém o valor mínimo e máximo de salário do job atual,
+        e convertendo para inteiro se for um valor numérico válido."""
+        min_salary = int(job['min_salary']) if job[
+            'min_salary'] is not None else None
+        max_salary = int(job['max_salary']) if job[
+            'max_salary'] is not None else None
+
+        """ Verifica se o valor mínimo e máximo de salário são válidos
+        e se o valor mínimo é menor ou igual ao valor máximo."""
+        if (min_salary is not None and max_salary is not None and
+                min_salary <= max_salary):
+
+            """Converte a string salary para
+            um inteiro, caso seja necessário """
+            if isinstance(salary, str):
+                salary = int(salary)
+
+            """ Verifica se o valor de salary está dentro do intervalo
+            e entre min_salary e max_salary do job atual."""
+            if min_salary <= salary <= max_salary:
+                filtered_jobs.append(job)
+
+    return filtered_jobs
     raise NotImplementedError
