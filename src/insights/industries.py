@@ -1,4 +1,5 @@
 from typing import List, Dict
+from insights import industries
 
 
 def get_unique_industries(path: str) -> List[str]:
@@ -16,6 +17,10 @@ def get_unique_industries(path: str) -> List[str]:
     list
         List of unique industries
     """
+    data = industries.read(path)
+    unique_industries = set(data["industry"])
+    unique_industries.discard("")  # remove empty string
+    return list(unique_industries)
     raise NotImplementedError
 
 
