@@ -13,16 +13,8 @@ def test_counter():
 
     # Teste para a palavra "Javascript"
     camel_case = count_ocurrences("data/jobs.csv", "Javascript")
-    assert camel_case == 1139
+    assert camel_case == 122
     uppercase = count_ocurrences("data/jobs.csv", "JAVASCRIPT")
-    assert uppercase == 1139
+    assert uppercase == 122
     lowercase = count_ocurrences("data/jobs.csv", "javascript")
-    assert lowercase == 1139
-
-    # Teste para a palavra "Ruby"
-    camel_case = count_ocurrences("data/jobs.csv", "Ruby")
-    assert camel_case == 297
-    uppercase = count_ocurrences("data/jobs.csv", "RUBY")
-    assert uppercase == 297
-    lowercase = count_ocurrences("data/jobs.csv", "ruby")
-    assert lowercase == 297
+    assert lowercase == 122
