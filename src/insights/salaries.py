@@ -86,22 +86,27 @@ def matches_salary_range(job: Dict, salary: Union[int, str]) -> bool:
         If `salary` isn't a valid integer
     """
     try:
-        min_salary = float(job['min_salary'])
-        max_salary = float(job['max_salary'])
-        salary = float(salary)
-    except KeyError:
-        raise ValueError(
-            '`min_salary` or `max_salary` are missing from the job'
-            )
-    except ValueError:
-        raise ValueError(
-            '`min_salary`, `max_salary`, and `salary` must be valid numbers'
-            )
+        # Tenta obter os valores de min_salary e max_salary do dicionário 'job'
+        min_salary = int(job['min_salary'])
+        max_salary = int(job['max_salary'])
 
-    if min_salary > max_salary:
-        raise ValueError('`min_salary` is greater than `max_salary`')
+        """ Verifica se a faixa salarial faz sentido
+        (ou seja, min_salary não é maior que max_salary)"""
+        if min_salary > max_salary:
+            raise ValueError(
+                "'min_salary' should not be greater than 'max_salary'."
+                )
 
-    return min_salary <= salary <= max_salary
+        # Converte o valor de 'salary' para um inteiro (caso seja uma string)
+        the_salary = int(salary)
+
+    except (KeyError, ValueError, TypeError):
+        # Caso ocorra algum erro, dispara uma exceção ValueError
+        raise ValueError("Invalid job or salary values.")
+
+    """ Caso contrário, retorna True se o salário está
+    dentro da faixa salarial do trabalho, e False caso contrário"""
+    return min_salary <= the_salary <= max_salary
     raise NotImplementedError
 
 
