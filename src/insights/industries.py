@@ -42,4 +42,10 @@ def filter_by_industry(jobs: List[Dict], industry: str) -> List[Dict]:
     list
         List of jobs with provided industry
     """
+    # List comprehension to filter jobs by industry
+    filtered_jobs = [
+        job for job in jobs
+        if job.get("industry") == industry
+        ]
+    return filtered_jobs
     raise NotImplementedError
