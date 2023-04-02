@@ -17,16 +17,19 @@ def get_max_salary(path: str) -> int:
     int
         The maximum salary paid out of all job opportunities
     """
-    data = read(path)
-    # utiliza list comprehension para criar uma lista de salários não nulos
-    salaries = [
-        int(row["max_salary"])
-        for row in data
-        if row.get("max_salary")
-    ]
-    # utiliza a função max() do Python para obter o maior salário da lista
-    max_salary = max(salaries)
-    return max_salary
+    # lê os dados do arquivo especificado pelo parâmetro `path`, mds !
+    all_jobs = read(path)
+    # variável para armazenar o salário mais alto encontrado até o momento
+    highSalary = 0
+    """percorre cada emprego e verifica se o salário máximo é um número
+    inteiro e maior que o salário mais alto encontrado até agora"""
+    for job in all_jobs:
+        if job['max_salary'].isdigit() and int(job['max_salary']) > highSalary:
+            """ se o salário máximo é válido e maior que o salário
+            mais alto encontrado até agora, atualiza highSalary"""
+            highSalary = int(job['max_salary'])
+    # passa por favor !
+    return highSalary
     raise NotImplementedError
 
 
